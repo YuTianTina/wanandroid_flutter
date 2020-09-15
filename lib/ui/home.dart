@@ -1,8 +1,8 @@
 
 import 'package:flutter/material.dart';
-import 'package:wanandroid_flutter/home/homeArticles.dart';
-import 'package:wanandroid_flutter/me/homeMe.dart';
-import 'package:wanandroid_flutter/palace/homePalace.dart';
+import 'package:wanandroid_flutter/ui/homeArticles.dart';
+import 'package:wanandroid_flutter/ui/homeMe.dart';
+import 'package:wanandroid_flutter/ui/homePalace.dart';
 
 /**
  * 首页
