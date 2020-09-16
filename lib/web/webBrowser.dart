@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:wanandroid_flutter/utils/eventBus.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 /// webview
@@ -12,14 +13,25 @@ class WebBrowser extends StatelessWidget{
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(title),
+    return WillPopScope(
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text(title),
+          actions: <Widget>[
+            IconButton(icon: Icon(Icons.close), onPressed: () => Navigator.pop(context, title)),
+            IconButton(icon: Icon(Icons.access_alarm), onPressed: () => EventBus.getInstance().post(Events.webEvent, title))
+          ],
+        ),
+        body: WebView(
+          initialUrl: url,
+          javascriptMode: JavascriptMode.unrestricted,
+        ),
       ),
-      body: WebView(
-        initialUrl: url,
-        javascriptMode: JavascriptMode.unrestricted,
-      ),
+      // 返回 / 导航栏 拦截
+      onWillPop: () async {
+        EventBus.getInstance().post(Events.webEvent, title);
+        return true;
+      },
     );
   }
 }

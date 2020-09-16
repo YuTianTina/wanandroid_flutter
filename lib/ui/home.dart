@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:wanandroid_flutter/ui/homeArticles.dart';
 import 'package:wanandroid_flutter/ui/homeMe.dart';
 import 'package:wanandroid_flutter/ui/homePalace.dart';
+import 'package:wanandroid_flutter/utils/aliIcons.dart';
 
 /**
  * 首页
@@ -46,11 +47,22 @@ class _HomeState extends State<HomePage>{
         appBar: new AppBar(
           title: new Text("玩Android"),
         ),
-        bottomNavigationBar: new BottomNavigationBar(
+        bottomNavigationBar: BottomNavigationBar(
+          // color: Colors.white,
+          // shape: CircularNotchedRectangle(),
+          // child: Row(
+          //   children: <Widget>[
+          //     IconButton(icon: Icon(Icons.home)),
+          //     // IconButton(icon: Icon(AliIcons.company)),
+          //     SizedBox(),
+          //     IconButton(icon: Icon(AliIcons.userCenter))
+          //   ],
+          //   mainAxisAlignment: MainAxisAlignment.spaceAround,
+          // ),
           items: [
             BottomNavigationBarItem(icon: Icon(Icons.home), title: Text('首页')),
-            BottomNavigationBarItem(icon: Icon(Icons.search), title: Text('广场')),
-            BottomNavigationBarItem(icon: Icon(Icons.location_city), title: Text('我'))
+            BottomNavigationBarItem(icon: Icon(AliIcons.company), title: Text('广场')),
+            BottomNavigationBarItem(icon: Icon(AliIcons.userCenter), title: Text('我'))
           ],
           currentIndex: _naviTapIndex,
           onTap: _naviSelected,

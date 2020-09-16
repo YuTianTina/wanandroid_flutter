@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:wanandroid_flutter/ui/home.dart';
+import 'package:wanandroid_flutter/web/webBrowser.dart';
 
 void main() {
   runApp(MyApp());
@@ -27,6 +29,25 @@ class MyApp extends StatelessWidget {
         // closer together (more dense) than on mobile platforms.
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
+      // routes: {
+      //   "webBrowser": (context){
+      //     var params = ModalRoute.of(context).settings.arguments as Map<String, dynamic>;
+      //     return WebBrowser(title: params["title"], url: params["url"]);
+      //   }
+      // },
+
+      // 命名路由拦截钩子
+      onGenerateRoute: (RouteSettings setting){
+        var params = setting.arguments as Map<String, dynamic>;
+        if(setting.name == "webBrowser"){
+          Fluttertoast.showToast(msg: "haha");
+          return MaterialPageRoute(builder: (context){
+            return WebBrowser(title: params["title"], url: params["url"]);
+          });
+        }else{
+          return null;
+        }
+      },
       home: HomePage(),
     );
   }
